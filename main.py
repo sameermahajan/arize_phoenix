@@ -1,10 +1,23 @@
+import os
 from phoenix.otel import register
 from openinference.instrumentation.openai import OpenAIInstrumentor
 from openai import OpenAI
 from opentelemetry import trace
+from dotenv import load_dotenv
+
+# for working with Arize AX
+load_dotenv()
 
 # Register Phoenix OTEL exporter
-tracer_provider = register()
+
+tracer_provider = register(
+    project_name="ollama-workflow",  
+    endpoint="https://otlp.arize.com/v1/traces",
+    protocol="http/protobuf",  # Explicitly set protocol
+    headers={
+        "api_key": os.getenv("ARIZE_API_KEY"),
+        "space_id": os.getenv("ARIZE_SPACE_ID"),
+    },)
 
 # Auto-instrument OpenAI-compatible clients
 OpenAIInstrumentor().instrument(tracer_provider=tracer_provider)
