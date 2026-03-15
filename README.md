@@ -9,3 +9,9 @@ python main.py
 # lookup traces
 
 http://localhost:6006/
+
+# AX Free
+
+app.arize.com
+
+not working!
