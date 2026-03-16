@@ -33,4 +33,4 @@ tracer_provider = register(
 | `main.py`            | Sending traces to Arize AX in the cloud |
 | `main_local_arize.py`| Sending traces to local Arize           |
 | `rag_main.py`        | Simple RAG tracing                      |
-| `rag_full_main.py'   | detailed RAG tracing                    |
+| `rag_full_main.py`   | detailed RAG tracing                    |
